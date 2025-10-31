@@ -57,6 +57,25 @@ button {
   gap: .75em;
 }
 
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1em;
+  width: 70%;
+  margin-top: 5em;
+}
+
+.card {
+  background-color: brown;
+  height: 400px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid blanchedalmond;
+  cursor: pointer;
+}
+
 @media (min-width: 1640px) {
   .container {
     margin:  0 auto;
