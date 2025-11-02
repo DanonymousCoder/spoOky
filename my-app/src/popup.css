@@ -1,0 +1,29 @@
+.container {
+    position: relative;
+}
+
+.pop-up {
+    height: 300px;
+    width: 400px;
+    background-color: brown;
+    border: 1px solid #FFFFFF;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    border-radius: 10px;
+    top: 200px;
+}
+
+.pop-up p {
+    font-size: 2rem;
+}
+
+.pop-up button {
+    border: 1px solid #FFFFFF;
+    padding: .5em 1em;
+    font-size: 1.25rem;
+    cursor: pointer;
+}

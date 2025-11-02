@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState, useRef } from "react";
 import {AiFillSound} from "react-icons/ai";
+import PopUp from './popup';
 
 function App() {
   const [candies, setCandies] = useState(0);
@@ -9,6 +10,22 @@ function App() {
   const [count, setCount] = useState(0);
   const [doorsOpened, setDoorsOpened] = useState(0);
   const [highScore, setHighScore] = useState(0);
+
+  const [showPopUp, setShowPopUp] = useState(false);
+
+  const trickMessages = [
+    "A ghost popped out",
+    "Spiders everywhere",
+    "A trick for you, your candy just vanished. Woah!",
+    "Tricks on you! The candy's fake"
+  ];
+
+  const treatMessages = [
+    "Delicious Candy",
+    "Chocolate Treasure",
+    "Yay! You found a candy stash",
+    "You've unlocked a golden treat!"
+  ];
 
   return (
     <div className="container">
@@ -45,6 +62,10 @@ function App() {
         </div>
       </div>
 
+      <PopUp showPopUp = {showPopUp} hidePopUp= {() => setShowPopUp(false)}>
+        <p>{trickMessages[Math.floor(Math.random() * 4)]}</p>
+      </PopUp>
+
       <div className="cards">
         <MyComponent 
         candies ={candies}
@@ -56,7 +77,8 @@ function App() {
         doorsOpened = {doorsOpened}
         setDoorsOpened = {setDoorsOpened}
         highScore = {highScore}
-        setHighScore = {setHighScore} />
+        setHighScore = {setHighScore}
+        setShowPopUp = {setShowPopUp} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
@@ -67,7 +89,8 @@ function App() {
         doorsOpened = {doorsOpened}
         setDoorsOpened = {setDoorsOpened}
         highScore = {highScore}
-        setHighScore = {setHighScore} />
+        setHighScore = {setHighScore}
+        setShowPopUp = {setShowPopUp} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
@@ -78,7 +101,8 @@ function App() {
         doorsOpened = {doorsOpened}
         setDoorsOpened = {setDoorsOpened}
         highScore = {highScore}
-        setHighScore = {setHighScore} />
+        setHighScore = {setHighScore}
+        setShowPopUp = {setShowPopUp} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
@@ -89,7 +113,8 @@ function App() {
         doorsOpened = {doorsOpened}
         setDoorsOpened = {setDoorsOpened}
         highScore = {highScore}
-        setHighScore = {setHighScore} />
+        setHighScore = {setHighScore}
+        setShowPopUp  = {setShowPopUp} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
@@ -100,7 +125,8 @@ function App() {
         doorsOpened = {doorsOpened}
         setDoorsOpened = {setDoorsOpened}
         highScore = {highScore}
-        setHighScore =  {setHighScore} />
+        setHighScore =  {setHighScore}
+        setShowPopUp = {setShowPopUp} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
@@ -111,7 +137,8 @@ function App() {
         doorsOpened = {doorsOpened}
         setDoorsOpened = {setDoorsOpened}
         highScore = {highScore}
-        setHighScore = {setHighScore} />
+        setHighScore = {setHighScore}
+        setShowPopUp = {setShowPopUp} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
@@ -122,7 +149,8 @@ function App() {
         doorsOpened = {doorsOpened}
         setDoorsOpened = {setDoorsOpened}
         highScore = {highScore}
-        setHighScore = {setHighScore} />
+        setHighScore = {setHighScore}
+        setShowPopUp = {setShowPopUp} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
@@ -133,7 +161,8 @@ function App() {
         doorsOpened = {doorsOpened}
         setDoorsOpened = {setDoorsOpened}
         highScore = {highScore}
-        setHighScore = {setHighScore} />
+        setHighScore = {setHighScore}
+        setShowPopUp = {setShowPopUp} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
@@ -144,7 +173,8 @@ function App() {
         doorsOpened = {doorsOpened}
         setDoorsOpened = {setDoorsOpened}
         highScore = {highScore}
-        setHighScore = {setHighScore} />
+        setHighScore = {setHighScore}
+        setShowPopUp = {setShowPopUp} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
@@ -155,7 +185,8 @@ function App() {
         doorsOpened = {doorsOpened}
         setDoorsOpened = {setDoorsOpened}
         highScore = {highScore}
-        setHighScore = {setHighScore} />
+        setHighScore = {setHighScore}
+        setShowPopUp = {setShowPopUp} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
@@ -166,7 +197,8 @@ function App() {
         doorsOpened = {doorsOpened}
         setDoorsOpened = {setDoorsOpened}
         highScore = {highScore}
-        setHighScore = {setHighScore} />
+        setHighScore = {setHighScore}
+        setShowPopUp = {setShowPopUp} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
@@ -177,7 +209,8 @@ function App() {
         doorsOpened = {doorsOpened}
         setDoorsOpened = {setDoorsOpened}
         highScore = {highScore} 
-        setHighScore = {setHighScore}/>
+        setHighScore = {setHighScore}
+        setShowPopUp = {setShowPopUp} />
       </div>
 
       <footer>
@@ -218,7 +251,7 @@ const ProgressCount = ({doorsOpened}) => {
   return <p>{doorsOpened}<span></span>/12 Doors</p>
 }
 
-const MyComponent = ({candies, setCandies, setTreats, setTricks, setCount, setDoorsOpened, highScore, setHighScore}) => {
+const MyComponent = ({candies, setCandies, setTreats, setTricks, setCount, setDoorsOpened, highScore, setHighScore, setShowPopUp}) => {
  
   const [isClicked, setIsClicked] = useState("Knock");
   const getTarget = useRef(null);
@@ -227,14 +260,22 @@ const MyComponent = ({candies, setCandies, setTreats, setTricks, setCount, setDo
     setIsClicked("Knocked");
     getTarget.current.classList.add("checked");
 
+    setShowPopUp(true);
+
 
     const determiner = Math.floor(Math.random() * 2);
 
     if (determiner === 1) {
       setTreats(prev => prev + 1);
+      const Message = ({}) => {
+        return <p>{treatMessage[0]}</p>
+      }
       alert("Have some candy bars");
     } else {
       setTricks(prev => prev + 1);
+      const Message = ({}) => {
+        return <p>trickMessages[0]</p>
+      }
       alert("Have some tricks");
     }
 
