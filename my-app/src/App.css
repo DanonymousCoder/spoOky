@@ -26,11 +26,22 @@ nav {
   gap: .75em;
 }
 
-button {
+.sound-box {
   padding: 1em 2em;
   cursor: pointer;
   border-radius: 10px;
-  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  border: 1px solid #FFFFFF;
+}
+
+button {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-size: 1.75rem;
 }
 
 .boxes {
@@ -104,11 +115,25 @@ footer {
   border: 1px solid burlywood;
   background: transparent;
   border-radius: 10px;
-  height: 10px;
+  height: 20px;
+}
+
+.filler {
+  height: 100%;
+  border-radius: 10px;
+  background-color: #a52a2a;
+  width: 0%;
+  transition: width .75s  cubic-bezier(.27,.46,.63,.48);
 }
 
 @media (min-width: 1640px) {
   .container {
     margin:  0 auto;
+  }
+}
+
+@media (max-width: 1190px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
