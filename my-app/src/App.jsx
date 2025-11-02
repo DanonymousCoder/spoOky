@@ -2,11 +2,14 @@ import "./App.css";
 import { useState } from "react";
 import {useRef} from "react";
 
+
 function App() {
   const [candies, setCandies] = useState(0);
   const [treats, setTreats] = useState(0);
   const [tricks, setTricks] = useState(0);
   const [count, setCount] = useState(0);
+  const [doorsOpened, setDoorsOpened] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
   return (
     <div className="container">
@@ -36,77 +39,125 @@ function App() {
         </div>
         <div className="box box-3">
           <p>Highscore</p>
-          <HighScore />
+          <HighScore highScore ={highScore} />
         </div>
       </div>
 
       <div className="cards">
         <MyComponent 
         candies ={candies}
+        count = {count}
+        setCount = {setCount}
         setCandies ={setCandies}
         setTreats ={setTreats}
-        setTricks={setTricks} />
+        setTricks={setTricks}
+        doorsOpened = {doorsOpened}
+        setDoorsOpened = {setDoorsOpened} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
+        count = {count}
+        setCount = {setCount}
         setTreats ={setTreats}
-        setTricks={setTricks} />
+        setTricks={setTricks}
+        doorsOpened = {doorsOpened}
+        setDoorsOpened = {setDoorsOpened} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
+        count = {count}
+        setCount = {setCount}
         setTreats ={setTreats}
-        setTricks={setTricks} />
+        setTricks={setTricks}
+        doorsOpened = {doorsOpened}
+        setDoorsOpened = {setDoorsOpened} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
+        count = {count}
+        setCount = {setCount}
         setTreats ={setTreats}
-        setTricks={setTricks} />
+        setTricks={setTricks}
+        doorsOpened = {doorsOpened}
+        setDoorsOpened = {setDoorsOpened} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
+        count = {count}
+        setCount = {setCount}
         setTreats ={setTreats}
-        setTricks={setTricks} />
+        setTricks={setTricks}
+        doorsOpened = {doorsOpened}
+        setDoorsOpened = {setDoorsOpened} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
+        count = {count}
+        setCount = {setCount}
         setTreats ={setTreats}
-        setTricks={setTricks} />
+        setTricks={setTricks}
+        doorsOpened = {doorsOpened}
+        setDoorsOpened = {setDoorsOpened} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
+        count = {count}
+        setCount = {setCount}
         setTreats ={setTreats}
-        setTricks={setTricks} />
+        setTricks={setTricks}
+        doorsOpened = {doorsOpened}
+        setDoorsOpened = {setDoorsOpened} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
+        count = {count}
+        setCount = {setCount}
         setTreats ={setTreats}
-        setTricks={setTricks} />
+        setTricks={setTricks}
+        doorsOpened = {doorsOpened}
+        setDoorsOpened = {setDoorsOpened} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
+        count = {count}
+        setCount = {setCount}
         setTreats ={setTreats}
-        setTricks={setTricks} />
+        setTricks={setTricks}
+        doorsOpened = {doorsOpened}
+        setDoorsOpened = {setDoorsOpened} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
+        count = {count}
+        setCount = {setCount}
         setTreats ={setTreats}
-        setTricks={setTricks} />
+        setTricks={setTricks}
+        doorsOpened = {doorsOpened}
+        setDoorsOpened = {setDoorsOpened} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
+        count = {count}
+        setCount = {setCount}
         setTreats ={setTreats}
-        setTricks={setTricks} />
+        setTricks={setTricks}
+        doorsOpened = {doorsOpened}
+        setDoorsOpened = {setDoorsOpened} />
         <MyComponent 
         candies ={candies}
         setCandies ={setCandies}
+        count = {count}
+        setCount = {setCount}
         setTreats ={setTreats}
-        setTricks={setTricks} />
+        setTricks={setTricks}
+        doorsOpened = {doorsOpened}
+        setDoorsOpened = {setDoorsOpened} />
       </div>
 
       <footer>
         <div className="progress-top">
           <p>Progress</p>
-          <ProgressCount />
+          <ProgressCount doorsOpened = {doorsOpened} />
         </div>
         <div className="progress-bar"></div>
       </footer>
@@ -131,31 +182,39 @@ const TricksHit = ({tricks}) => {
   return <p className="count">{tricks}</p>
 };
 
-const HighScore = () => {
-  return <p className="count">0</p>
+const HighScore = ({highScore}) => {
+  return <p className="count">{highScore}</p>
 }
 
-const ProgressCount = ({count}) => {
-  return <p><span>{count}</span>/12 Doors</p>
+const ProgressCount = ({doorsOpened}) => {
+  return <p>{doorsOpened}<span></span>/12 Doors</p>
 }
 
-const MyComponent = ({count, candies, setCandies, setTreats, setTricks, setCount}) => {
+const MyComponent = ({setCandies, setTreats, setTricks, setCount, setDoorsOpened, highScore, setHighScore}) => {
  
-  const [isClicked, setIsClicked] = useState("Knock");
+  const [isClicked, setIsClicked] = useState(false);
   const getTarget = useRef(null);
 
   const handleClick = () => {
     setIsClicked("Knocked");
-    setCandies(candies + 1);
-    setCount(count + 1)
+    setCandies(prev => {
+      const newCandy = prev + 1;
+
+      if (newCandy > highScore) {
+        setHighScore(newCandy);
+      }
+    });
+    setCount(prev => prev + 1);
+    setDoorsOpened(prev => prev + 1);
     
-    if(getTarget.current) {
+    
+    if (getTarget.current) {
       getTarget.current.classList.add("checked");
     }
 
    const determiner = Math.floor(Math.random() * 2);
 
-   if (determiner == 1) {
+   if (determiner === 1) {
     setTreats(prev => prev + 1);
     alert("Have some candy bars");
    } else {
@@ -168,7 +227,8 @@ const MyComponent = ({count, candies, setCandies, setTreats, setTricks, setCount
     <div className="card" onClick={handleClick} ref={getTarget}>
           <p>{isClicked}</p>
     </div>
-  );
+
+);
 };
 
 export default App;

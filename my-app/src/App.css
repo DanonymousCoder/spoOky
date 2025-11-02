@@ -63,6 +63,7 @@ button {
   gap: 1em;
   width: 70%;
   margin-top: 5em;
+  margin-bottom: 12em;
 }
 
 .card {
@@ -78,6 +79,7 @@ button {
 
 .checked {
   background-color: rgb(19, 1, 1);
+  border: 1px solid blue;
 }
 
 footer {
